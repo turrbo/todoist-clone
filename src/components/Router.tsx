@@ -8,6 +8,16 @@ import FiltersView from "@/components/views/FiltersView";
 import ProjectView from "@/components/views/ProjectView";
 import LabelView from "@/components/views/LabelView";
 
+const BASE_PATH = process.env.NODE_ENV === "production" ? "/todoist-clone" : "";
+
+function stripBasePath(path: string): string {
+  if (BASE_PATH && path.startsWith(BASE_PATH)) {
+    const stripped = path.slice(BASE_PATH.length);
+    return stripped || "/";
+  }
+  return path || "/";
+}
+
 interface RouterContextType {
   pathname: string;
   navigate: (path: string) => void;
@@ -26,17 +36,18 @@ export function RouterProvider({ children }: { children: React.ReactNode }) {
   const [pathname, setPathname] = useState("/");
 
   useEffect(() => {
-    setPathname(window.location.pathname);
+    setPathname(stripBasePath(window.location.pathname));
 
     const handlePopState = () => {
-      setPathname(window.location.pathname);
+      setPathname(stripBasePath(window.location.pathname));
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   const navigate = useCallback((path: string) => {
-    window.history.pushState(null, "", path);
+    const fullPath = BASE_PATH + path;
+    window.history.pushState(null, "", fullPath);
     setPathname(path);
   }, []);
 
