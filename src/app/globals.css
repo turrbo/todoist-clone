@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white font-sans text-[#202020] antialiased;
+  }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+/* Task completion animation */
+@keyframes taskComplete {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+.task-completing {
+  animation: taskComplete 0.3s ease-out forwards;
+}
+
+/* Sidebar transition */
+.sidebar-transition {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-transition {
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Input and textarea focus styles */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #dc4c3e;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Remove default focus outline on buttons */
+button:focus {
+  outline: none;
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Task item hover state */
+.task-item {
+  transition: background-color 0.15s ease;
+}
+
+.task-item:hover {
+  background-color: #fafafa;
+}
+
+/* Priority colors matching Todoist */
+.priority-1 {
+  color: #d1453b;
+}
+
+.priority-2 {
+  color: #eb8909;
+}
+
+.priority-3 {
+  color: #246fe0;
+}
+
+.priority-4 {
+  color: #808080;
+}
+
+/* Custom utility classes */
+.text-todoist-primary {
+  color: #202020;
+}
+
+.text-todoist-secondary {
+  color: #6b7280;
+}
+
+.text-todoist-tertiary {
+  color: #9ca3af;
+}
+
+.text-todoist-priority-1 {
+  color: #d1453b;
+}
+
+.text-todoist-priority-2 {
+  color: #eb8909;
+}
+
+.text-todoist-priority-3 {
+  color: #246fe0;
+}
+
+.bg-todoist-hover {
+  background-color: #fafafa;
+}
+
+.border-todoist {
+  border-color: #e5e7eb;
+}
