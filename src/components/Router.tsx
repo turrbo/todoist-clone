@@ -8,7 +8,7 @@ import FiltersView from "@/components/views/FiltersView";
 import ProjectView from "@/components/views/ProjectView";
 import LabelView from "@/components/views/LabelView";
 
-const BASE_PATH = process.env.NODE_ENV === "production" ? "/todoist-clone" : "";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 function stripBasePath(path: string): string {
   if (BASE_PATH && path.startsWith(BASE_PATH)) {
